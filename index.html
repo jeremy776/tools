@@ -48,8 +48,8 @@
 			.then(response => response.json())
 			.then(data => {
 				const projectList = document.getElementById("project-list");
-
-				data.forEach(project => {
+        const projects = data.filter(x => x.type === "dir");
+				projects.forEach(project => {
           console.log(project.name)
 					const card = document.createElement("div");
 					card.classList.add("card");
