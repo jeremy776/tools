@@ -10,10 +10,10 @@
 </head>
 
 <body>
-	<div class="navbar shadow">
+	<div class="navbar bg-white text-black shadow">
 		<div class="flex-none">
 			<div class="dropdown">
-				<label tabindex='0' class="btn btn-ghost btn-square m-1">
+				<label tabindex='0' class="outline-none btn btn-ghost btn-square m-1">
 					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
 						class="inline-block w-5 h-5 stroke-current">
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -21,7 +21,7 @@
 						</path>
 					</svg>
 				</label>
-				<ul class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+				<ul class="dropdown-content menu p-2 shadow bg-white text-black rounded-box w-52">
 					<li>
 						<a href="/">Home</a>
 					</li>
@@ -32,29 +32,21 @@
 			<a class="btn btn-ghost normal-case text-xl">MyTools</a>
 		</div>
 		<div class="flex-none">
-			<!-- <button class="btn btn-square btn-ghost">
-				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-					class="inline-block w-5 h-5 stroke-current">
-					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-						d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z">
-					</path>
-				</svg>
-			</button> -->
 		</div>
 	</div>
 
-	<div class="h-[80vh]">
+	<div class="h-[80vh] bg-white">
 		<div class="flex justify-center h-full items-center">
 			<div class="max-w-7xl text-center">
-				<h1 class="text-5xl font-extrabold font-mono">MyTool</h1>
+				<h1 class="text-5xl font-extrabold font-mono text-gray-900">MyTool</h1>
 				<p class="font-mono mt-4 bg-indigo-400 text-white p-2 shadow-xl rounded-md">Kumpulan tools yang dibuat karena hasil dari kegabutan</p>
 			</div>
 		</div>
 	</div>
 
-	<div class="bg-slate-100">
+	<div class="bg-slate-100 text-black dark:text-gray-700">
 		<h1 class="text-center pt-6 mb-4 text-4xl font-extrabold font-mono">List Tools</h1>
-		<div id="project-list" class="p-4"></div>
+		<div id="project-list" class="p-4 flex gap-3 justify-center flex-wrap"></div>
 	</div>
 
 	<script>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Calculator</title>
+</head>
+
+<body class="h-[100vh] bg-slate-100 flex justify-center items-center">
+  <div class="calculator bg-white p-4 border rounded-md">
+    <div class="display">
+      <input type="text" class="text-right w-full mb-6 text-2xl font-bold font-mono bg-white mt-4" id="result" value="0"
+        disabled>
+    </div>
+    <div class="keys grid grid-cols-4 gap-5">
+      <button class="button-number" onclick="updateDisplay('7')">7</button>
+      <button class="button-number" onclick="updateDisplay('8')">8</button>
+      <button class="button-number" onclick="updateDisplay('9')">9</button>
+      <button class="operator" onclick="updateDisplay('x')">x</button>
+      <!-- <button class="operator" onclick="calculate('divide')">/<button> -->
+
+      <button class="button-number" onclick="updateDisplay('4')">4</button>
+      <button class="button-number" onclick="updateDisplay('5')">5</button>
+      <button class="button-number" onclick="updateDisplay('6')">6</button>
+      <button class="operator" onclick="updateDisplay('-')">-</button>
+
+      <button class="button-number" onclick="updateDisplay('1')">1</button>
+      <button class="button-number" onclick="updateDisplay('2')">2</button>
+      <button class="button-number" onclick="updateDisplay('3')">3</button>
+      <button class="operator" onclick="updateDisplay('+')">+</button>
+
+      <button class="button-clear" onclick="clearDisplay()">C</button>
+      <button class="button-number" onclick="updateDisplay('0')">0</button>
+      <button class="button-number" onclick="updateDisplay('/')">/</button>
+      <button onclick="calculate('equal')">=</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+  <style type="text/tailwindcss">
+    @layer components {
+      /* button for operator */
+      .operator {
+        @apply bg-gray-200 text-orange-700 font-bold rounded-full w-12 h-12 flex justify-center items-center;
+      }
+      /* button for number */
+      .button-number {
+        @apply bg-gray-100 text-gray-700 font-bold rounded-full w-12 h-12 flex justify-center items-center;
+      }
+      /* button for clear */
+      .button-clear {
+        @apply bg-orange-300 text-gray-100 font-bold rounded-full w-12 h-12 flex justify-center items-center;
+      }
+    }
+  </style>
+  <script>
+    function updateDisplay(value) {
+      const display = document.getElementById('result');
+      if (display.value === '0') {
+        display.value = value;
+      } else {
+        display.value += value;
+      }
+    }
+    function clearDisplay() {
+      const display = document.getElementById('result');
+      display.value = '0';
+    }
+    function calculate(operator) {
+      const display = document.getElementById('result');
+      const value = display.value;
+      if (value.includes('+') || value.includes('-') || value.includes('x') || value.includes('/')) {
+        const values = value.split(/(\+|-|x|\/)/);
+        const firstNumber = parseFloat(values[0]);
+        const operator = values[1];
+        const secondNumber = parseFloat(values[2]);
+        let result;
+        if (operator === '+') {
+          result = firstNumber + secondNumber;
+        } else if (operator === '-') {
+          result = firstNumber - secondNumber;
+        } else if (operator === 'x') {
+          result = firstNumber * secondNumber;
+        } else if (operator === '/') {
+          result = firstNumber / secondNumber;
+        }
+        if (Number.isInteger(result)) {
+          display.value = result;
+        } else {
+          display.value = result.toFixed(2);
+        }
+      }
+    }
+  </script>
+</body>
+
+</html>
