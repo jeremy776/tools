@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menghitung Energi Kinetik</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.css" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+  <div class="p-6">
+    <h1 class="text-2xl font-bold text-center font-mono mb-4">Menghitung Energi Kinetik</h1>
+    <div>
+      <label for="countries" class="block mb-2 text-sm font-medium text-gray-900">Mencari</label>
+      <select name="pilih" id=""
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+        <option disabled selected>Pilih</option>
+        <option value="ek">Energi Kinetik</option>
+        <option value="m">Massa</option>
+        <option value="v">kecepatan</option>
+      </select>
+    </div>
+    <div id="input-list" class="p-3 flex flex-col gap-4">
+    </div>
+    <div class="mt-4">
+      <button type="button" onclick="hitung()"
+        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Dapatkan
+        Hasil</button>
+    </div>
+    <div id="jawaban" class="mt-2"></div>
+
+  </div>
+  <div class="bg-slate-50 p-6">
+    <h1 class="font-mono font-semibold mb-2 text-xl text-gray-700">Semua tentang energi potensial</h1>
+    <p class="mb-6">Energi potensial adalah jenis energi yang dimiliki oleh sebuah benda atau sistem sebagai akibat dari posisi, kondisi atau konfigurasinya dalam sebuah medan gaya. Energi potensial dapat disimpan dalam benda atau sistem dan dapat diubah menjadi energi kinetik saat benda atau sistem bergerak.</p>
+    <p>Perlu diingat bahwa energi potensial hanya ada jika benda atau sistem berada dalam medan gaya tertentu, sehingga energi potensial dapat diubah menjadi energi kinetik saat benda atau sistem bergerak di dalam medan gaya tersebut.</p>
+    <div class="mt-4">
+      <h2 class="mb-2 text-lg font-semibold text-gray-900">Keterangan:</h2>
+      <ul class="max-w-md space-y-1 text-gray-600 list-disc list-inside">
+        <li>Ep adalah energi potensial gravitasi dalam Joule (J)</li>
+        <li>m adalah massa benda dalam kilogram (kg)</li>
+        <li>g adalah percepatan gravitasi bumi, sekitar 10m/s² atau 9,81 m/s²</li>
+        <li>h adalah ketinggian benda di atas permukaan bumi dalam meter (m)</li>
+      </ul>
+    </div>
+    <div class="mt-4">
+      <h2 class="mb-2 text-lg font-semibold text-gray-900">Rumus Perhitungan:</h2>
+      <ul class="max-w-md space-y-1 text-gray-600 list-disc list-inside">
+        <li>Ep = m x g x h</li>
+        <li>m = Ep / g x h</li>
+        <li>h = Ep / m x g</li>
+      </ul>
+    </div>
+  </div>
+  
+<footer class="p-4 bg-white shadow md:flex md:items-center md:justify-between md:p-6">
+  <span class="text-sm text-gray-500 sm:text-center">© 2023 <a href="/" class="hover:underline">Jeremy</a>. All Rights Reserved.
+  </span>
+  <!-- <ul class="flex flex-wrap items-center mt-3 text-sm text-gray-500 sm:mt-0">
+      <li>
+          <a href="#" class="mr-4 hover:underline md:mr-6 ">About</a>
+      </li>
+  </ul> -->
+</footer>
+
+
+  <script>
+    // ambil nilai dari select option
+    const pilih = document.querySelector('select[name=pilih]');
+    let inputList = document.getElementById('input-list');
+    pilih.addEventListener('change', function () {
+
+      let headerDiv1 = document.createElement('div');
+      headerDiv1.className = 'flex';
+      let span1 = document.createElement('span');
+      span1.innerText = 'Ek';
+      span1.className = 'inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md ';
+      let input1 = document.createElement('input');
+      input1.placeholder = 'Energi Kinetik';
+      input1.id = 'energi-kinetik';
+      input1.className = "rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5";
+      input1.type = 'number';
+      headerDiv1.appendChild(span1);
+      headerDiv1.appendChild(input1);
+
+      let headerDiv2 = document.createElement('div');
+      headerDiv2.className = 'flex';
+      let span2 = document.createElement('span');
+      span2.innerText = 'h';
+      span2.className = 'inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md ';
+      let input2 = document.createElement('input');
+      input2.placeholder = 'Ketinggian';
+      input2.id = 'tinggi';
+      input2.className = "rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5";
+      input2.type = 'number';
+      headerDiv2.appendChild(span2);
+      headerDiv2.appendChild(input2);
+
+      let headerDiv3 = document.createElement('div');
+      headerDiv3.className = 'flex';
+      let span3 = document.createElement('span');
+      span3.innerText = 'm';
+      span3.className = 'inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md ';
+      let input3 = document.createElement('input');
+      input3.placeholder = 'Massa';
+      input3.id = 'massa';
+      input3.className = "rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5";
+      input3.type = 'number';
+      headerDiv3.appendChild(span3);
+      headerDiv3.appendChild(input3);
+
+      let headerDiv4 = document.createElement('div');
+      headerDiv4.className = 'flex';
+      let span4 = document.createElement('span');
+      span4.innerText = 'g';
+      span4.className = 'inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md ';
+      let input4 = document.createElement('input');
+      input4.placeholder = 'Percepatan Gravitasi';
+      input4.id = 'gaya-gravitasi';
+      input4.value = 10;
+      input4.className = "rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5";
+      input4.type = 'number';
+      headerDiv4.appendChild(span4);
+      headerDiv4.appendChild(input4);
+
+      if (this.value === 'ek') {
+        inputList.innerHTML = '';
+        inputList.appendChild(headerDiv2);
+        inputList.appendChild(headerDiv3);
+        inputList.appendChild(headerDiv4);
+      }
+    });
+
+    function hitung() {
+        let energiKinetik = document.getElementById('energi-kinetik');
+        let massa = document.getElementById('massa');
+        let kecepatan = document.getElementById('kecepatan');
+
+        if(pilih.value === 'ek') {
+            let ek = 1/2*massa.value*(kecepatan.value * kecepatan.value);
+            document.getElementById('jawaban').innerHTML = `Energi Kinetik yang dihasilkan adalah <b>${ek} Joule</b>`;
+        } else if(pilih.value === 'm') {
+            let m = energiKinetik.value/(1/2*(kecepatan.value*kecepatan.value));
+            document.getElementById('jawaban').innerHTML = `Massa benda tersebut adalah <b>${m} Kilogram</b>`;
+        } else if(pilih.value === 'v') {
+            
+        }
+    }
+  </script>
+</body>
+
+</html>
