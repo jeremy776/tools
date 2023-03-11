@@ -19,8 +19,6 @@
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
         <option disabled selected>Pilih</option>
         <option value="ek">Energi Kinetik</option>
-        <option value="m">Massa</option>
-        <option value="v">kecepatan</option>
       </select>
     </div>
     <div id="input-list" class="p-3 flex flex-col gap-4">
@@ -32,28 +30,6 @@
     </div>
     <div id="jawaban" class="mt-2"></div>
 
-  </div>
-  <div class="bg-slate-50 p-6">
-    <h1 class="font-mono font-semibold mb-2 text-xl text-gray-700">Semua tentang energi potensial</h1>
-    <p class="mb-6">Energi potensial adalah jenis energi yang dimiliki oleh sebuah benda atau sistem sebagai akibat dari posisi, kondisi atau konfigurasinya dalam sebuah medan gaya. Energi potensial dapat disimpan dalam benda atau sistem dan dapat diubah menjadi energi kinetik saat benda atau sistem bergerak.</p>
-    <p>Perlu diingat bahwa energi potensial hanya ada jika benda atau sistem berada dalam medan gaya tertentu, sehingga energi potensial dapat diubah menjadi energi kinetik saat benda atau sistem bergerak di dalam medan gaya tersebut.</p>
-    <div class="mt-4">
-      <h2 class="mb-2 text-lg font-semibold text-gray-900">Keterangan:</h2>
-      <ul class="max-w-md space-y-1 text-gray-600 list-disc list-inside">
-        <li>Ep adalah energi potensial gravitasi dalam Joule (J)</li>
-        <li>m adalah massa benda dalam kilogram (kg)</li>
-        <li>g adalah percepatan gravitasi bumi, sekitar 10m/s² atau 9,81 m/s²</li>
-        <li>h adalah ketinggian benda di atas permukaan bumi dalam meter (m)</li>
-      </ul>
-    </div>
-    <div class="mt-4">
-      <h2 class="mb-2 text-lg font-semibold text-gray-900">Rumus Perhitungan:</h2>
-      <ul class="max-w-md space-y-1 text-gray-600 list-disc list-inside">
-        <li>Ep = m x g x h</li>
-        <li>m = Ep / g x h</li>
-        <li>h = Ep / m x g</li>
-      </ul>
-    </div>
   </div>
   
 <footer class="p-4 bg-white shadow md:flex md:items-center md:justify-between md:p-6">
@@ -89,11 +65,11 @@
       let headerDiv2 = document.createElement('div');
       headerDiv2.className = 'flex';
       let span2 = document.createElement('span');
-      span2.innerText = 'h';
+      span2.innerText = 'v';
       span2.className = 'inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md ';
       let input2 = document.createElement('input');
-      input2.placeholder = 'Ketinggian';
-      input2.id = 'tinggi';
+      input2.placeholder = 'Kecepatan';
+      input2.id = 'kecepatan';
       input2.className = "rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5";
       input2.type = 'number';
       headerDiv2.appendChild(span2);
@@ -130,7 +106,6 @@
         inputList.innerHTML = '';
         inputList.appendChild(headerDiv2);
         inputList.appendChild(headerDiv3);
-        inputList.appendChild(headerDiv4);
       }
     });
 
