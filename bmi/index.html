@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Kalkulator BMI - Tools Anrekus</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kalkulator BMI online gratis. Hitung indeks massa tubuh Anda dan ketahui apakah Anda berada pada kategori berat badan normal atau tidak.">
+    <meta name="keywords" content="kalkulator bmi, indeks massa tubuh, hitung bmi, berat badan normal">
+    <meta name="author" content="Anrekus">
+
+    <meta property="og:title" content="Kalkulator BMI - Tools Anrekus">
+    <meta property="og:description" content="Kalkulator BMI online gratis. Hitung indeks massa tubuh Anda dan ketahui apakah Anda berada pada kategori berat badan normal atau tidak.">
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="p-6">
+    <h2 class="text-center text-4xl font-semibold text-green-600 p-4">Kalkulator BMI</h2>
+    <div class="flex justify-center">
+
+        <form class="bg-gray-100  max-w-xl w-full p-6 rounded-lg">
+            <div class="flex gap-2 flex-col mb-4">
+                <label class="block text-sm font-medium text-gray-900" for="gender">Jenis Kelamin:</label>
+                <select id="gender"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                    <option value="male">Laki-laki</option>
+                    <option value="female">Perempuan</option>
+                </select><br><br>
+            </div>
+
+            <div class="flex gap-2 flex-col mb-4">
+                <label for="height" class="block text-sm font-medium text-gray-900">Tinggi (cm):</label>
+                <input type="number"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    name="height" id="height"><br><br>
+            </div>
+
+            <div class="flex gap-2 flex-col mb-4">
+                <label for="weight" class="block text-sm font-medium text-gray-900">Berat (kg):</label>
+                <input type="number"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    name="weight" id="weight"><br><br>
+            </div>
+
+            <button type="button"
+                class="mb-6 w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-md px-5 py-2.5 mr-2 mb-2">Hitung</button>
+
+            <div class="flex gap-2 flex-col mb-4">
+                <label for="result" class="block text-sm font-medium text-gray-900">BMI:</label>
+                <input type="text"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    name="result" id="result" readonly><br><br>
+            </div>
+
+            <div class="flex gap-2 flex-col mb-4">
+                <label for="status" class="block text-sm font-medium text-gray-900">Status BMI:</label>
+                <input type="text"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    name="status" id="status" readonly>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function calculateBMI() {
+            // Mendapatkan input dari user
+            var gender = document.getElementById("gender").value;
+            var height = parseFloat(document.getElementById("height").value);
+            var weight = parseFloat(document.getElementById("weight").value);
+
+            // Menghitung BMI
+            var bmi = weight / ((height / 100) * (height / 100));
+
+            // Mendeteksi status BMI berdasarkan gender
+            var status = "";
+            if (gender === "male") {
+                if (bmi < 20.5) {
+                    status = "Kurus";
+                } else if (bmi >= 20.5 && bmi <= 25.0) {
+                    status = "Normal";
+                } else if (bmi > 25.0) {
+                    status = "Gemuk";
+                }
+            } else if (gender === "female") {
+                if (bmi < 18.5) {
+                    status = "Kurus";
+                } else if (bmi >= 18.5 && bmi <= 23.0) {
+                    status = "Normal";
+                } else if (bmi > 23.0) {
+                    status = "Gemuk";
+                }
+            }
+
+            // Menampilkan hasil
+            document.getElementById("result").value = bmi.toFixed(2);
+            document.getElementById("status").value = status;
+        }
+    </script>
+</body>
+
+</html>
