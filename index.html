@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title>My Projects</title>
+	<title>Tools Anrekus Tech</title>
 	<script src="https://cdn.tailwindcss.com"></script>
 	<link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.3/dist/full.css" rel="stylesheet" type="text/css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -107,6 +107,33 @@
 		</div>
 	</div>
 
+	<div class="bg-slate-100 py-20">
+		<h1 class="text-center text-4xl font-mono text-gray-900">Berikan Tanggapan</h1>
+		<div class="mt-6 flex p-6 justify-center flex-col-reverse md:flex-row gap-4">
+			<div class="w-full">
+				<div class="flex flex-col gap-2 w-full">
+					<label class="text-xl text-gray-900">Pesan:</label>
+					<textarea class="textarea w-full textarea-bordered" placeholder="Komentar mu"></textarea>
+				</div>
+				<div>
+					<button onclick="loginWithGoogle()"
+						class="border-2 mt-4 text-center font-semibold hover:rounded border-blue-400 px-6 py-2 text-black">Login
+						Dengan Google</button>
+				</div>
+			</div>
+			<div class="w-full flex gap-2">
+				<div class="bg-white rounded px-6 py-2 h-fit rounded">
+					<div class="">
+						<div>
+							<h2 class="text-md font-mono mb-2 text-gray-800">Jeremy</h2>
+							<p class="text-sm text-gray-900">Testing comment feature</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<footer class="footer p-10 bg-gray-900 text-neutral-content">
 		<div>
 			<svg width="50" height="50" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd"
@@ -124,7 +151,9 @@
 	</footer>
 
 	<!-- Firebase SDK -->
+
 	<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-auth.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-database.js"></script>
 	<script src="/firebase.js"></script>
 	<script>
@@ -143,6 +172,27 @@
 		counterRef.transaction(function (currentCount) {
 			return (currentCount || 0) + 1;
 		});
+	</script>
+	<script>
+	
+	</script>
+	<script>
+		function loginWithGoogle() {
+			let provider = new firebase.auth.GoogleAuthProvider();
+			firebase.auth().signInWithPopup(provider)
+				.then((result) => {
+					console.log(result);
+					let userdta = {
+						name: result.user.displayName,
+						email: result.user.email,
+						photoURL: result.user.photoURL
+					}
+					var expiresDate = new Date();
+					expiresDate.setTime(expiresDate.getTime() + (2 * 24 * 60 * 60 * 1000)); // 2 hari
+					var expires = "expires=" + expiresDate.toGMTString();
+					document.cookie = "user_data=" + JSON.stringify(userdta) + ";" + expires + ";path/"
+				})
+		}
 	</script>
 	<script>
 		const username = "jeremy776";
