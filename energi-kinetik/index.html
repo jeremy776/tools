@@ -19,6 +19,8 @@
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
         <option disabled selected>Pilih</option>
         <option value="ek">Energi Kinetik</option>
+        <option value="v">Kecepatan</option>
+        <option value="m">Massa</option>
       </select>
     </div>
     <div id="input-list" class="p-3 flex flex-col gap-4">
@@ -31,16 +33,39 @@
     <div id="jawaban" class="mt-2"></div>
 
   </div>
-  
-<footer class="p-4 bg-white shadow md:flex md:items-center md:justify-between md:p-6">
-  <span class="text-sm text-gray-500 sm:text-center">© 2023 <a href="/" class="hover:underline">Jeremy</a>. All Rights Reserved.
-  </span>
-  <!-- <ul class="flex flex-wrap items-center mt-3 text-sm text-gray-500 sm:mt-0">
+
+  <div class="bg-slate-50 p-6">
+    <h1 class="font-mono font-semibold mb-2 text-xl text-gray-700">Semua tentang energi kinetik</h1>
+    <p class="mb-6">Energi kinetik adalah energi yang dimiliki oleh benda yang sedang bergerak sebagai hasil dari kecepatannya. Semakin cepat benda bergerak, semakin besar energi kinetiknya.</p>
+    <p>Energi kinetik berhubungan erat dengan hukum kekekalan energi dan hukum kekekalan momentum. Ketika benda bergerak, energi kinetiknya dapat diubah menjadi energi potensial atau jenis energi lainnya. Misalnya, ketika bola dilemparkan ke atas, energi kinetiknya berubah menjadi energi potensial gravitasi saat bola mencapai titik tertinggi. Ketika bola jatuh kembali ke bawah, energi potensialnya berubah kembali menjadi energi kinetik.</p>
+    <div class="mt-4">
+      <h2 class="mb-2 text-lg font-semibold text-gray-900">Keterangan:</h2>
+      <ul class="max-w-md space-y-1 text-gray-600 list-disc list-inside">
+        <li>Ek adalah energi kinetik dalam Joule (J)</li>
+        <li>m adalah massa benda dalam kilogram (kg)</li>
+        <li>v adalah Kecepatan suatu benda yang memiliki satuan (m/s)</li>
+      </ul>
+    </div>
+    <div class="mt-4">
+      <h2 class="mb-2 text-lg font-semibold text-gray-900">Rumus Perhitungan:</h2>
+      <ul class="max-w-md space-y-1 text-gray-600 list-disc list-inside">
+        <li>Ek = 1/2 * m * v²</li>
+        <li>m = Ek / (1/2) * v²</li>
+        <li>v² = Ek / (1/2) * m</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer class="p-4 bg-white shadow md:flex md:items-center md:justify-between md:p-6">
+    <span class="text-sm text-gray-500 sm:text-center">© 2023 <a href="/" class="hover:underline">Jeremy</a>. All Rights
+      Reserved.
+    </span>
+    <!-- <ul class="flex flex-wrap items-center mt-3 text-sm text-gray-500 sm:mt-0">
       <li>
           <a href="#" class="mr-4 hover:underline md:mr-6 ">About</a>
       </li>
   </ul> -->
-</footer>
+  </footer>
 
 
   <script>
@@ -102,27 +127,53 @@
       headerDiv4.appendChild(span4);
       headerDiv4.appendChild(input4);
 
+      let createOptionForKecepatan = document.createElement('div');
+      createOptionForKecepatan.innerHTML = `
+<div class="flex items-center pl-4 border border-gray-200 rounded">
+    <input checked id="bordered-radio-1" type="radio" value="ms" name="satuan-kecepatan" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
+    <label for="bordered-radio-1" class="w-full py-4 ml-2 text-sm font-medium text-gray-900">m/s</label>
+</div>
+<div class="flex items-center pl-4 border border-gray-200 rounded mt-2">
+    <input id="bordered-radio-2" type="radio" value="kmj" name="satuan-kecepatan" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
+    <label for="bordered-radio-2" class="w-full py-4 ml-2 text-sm font-medium text-gray-900">Km/jam</label>
+</div>
+`
+
       if (this.value === 'ek') {
         inputList.innerHTML = '';
         inputList.appendChild(headerDiv2);
         inputList.appendChild(headerDiv3);
+      } else if (this.value === 'v') {
+        inputList.innerHTML = '';
+        inputList.appendChild(headerDiv1);
+        inputList.appendChild(headerDiv3);
+      } else if (this.value === 'm') {
+        inputList.innerHTML = '';
+        inputList.appendChild(headerDiv1);
+        inputList.appendChild(headerDiv2);
+        inputList.appendChild(createOptionForKecepatan);
       }
     });
 
     function hitung() {
-        let energiKinetik = document.getElementById('energi-kinetik');
-        let massa = document.getElementById('massa');
-        let kecepatan = document.getElementById('kecepatan');
+      let energiKinetik = document.getElementById('energi-kinetik');
+      let massa = document.getElementById('massa');
+      let kecepatan = document.getElementById('kecepatan');
 
-        if(pilih.value === 'ek') {
-            let ek = 1/2*massa.value*(kecepatan.value * kecepatan.value);
-            document.getElementById('jawaban').innerHTML = `Energi Kinetik yang dihasilkan adalah <b>${ek} Joule</b>`;
-        } else if(pilih.value === 'm') {
-            let m = energiKinetik.value/(1/2*(kecepatan.value*kecepatan.value));
-            document.getElementById('jawaban').innerHTML = `Massa benda tersebut adalah <b>${m} Kilogram</b>`;
-        } else if(pilih.value === 'v') {
-            
+      if (pilih.value === 'ek') {
+        let ek = 1 / 2 * massa.value * (kecepatan.value * kecepatan.value);
+        document.getElementById('jawaban').innerHTML = `Energi Kinetik yang dihasilkan adalah <b>${ek} Joule</b>`;
+      } else if (pilih.value === 'm') {
+        let kcpt = kecepatan.value;
+        if (document.querySelector('input[name="satuan-kecepatan"]:checked').value === 'kmj') {
+          kcpt = kcpt*1000/3600;
         }
+        let m = energiKinetik.value / (1 / 2 * (kcpt * kcpt));
+        document.getElementById('jawaban').innerHTML = `Massa benda tersebut adalah <b>${m} Kilogram</b>`;
+      } else if (pilih.value === 'v') {
+        let v = Math.sqrt(energiKinetik.value / (1 / 2 * massa.value));
+        document.getElementById('jawaban').innerHTML = `Kecepatan benda tersebut adalah <b>${v} m/s</b>`;
+      }
     }
   </script>
 </body>
