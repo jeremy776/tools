@@ -112,12 +112,9 @@
 			<div class="w-full">
 				<div class="flex flex-col gap-2 w-full">
 					<label class="text-xl text-gray-900">Pesan:</label>
-					<textarea id="comment" class="textarea w-full textarea-bordered" placeholder="Komentar mu"></textarea>
+					<textarea id="comment" class="textarea w-full max-w-xl bg-gray-200 text-gray-800 textarea-bordered" placeholder="Komentar mu"></textarea>
 				</div>
 				<div class="action">
-					<!-- <button onclick="loginWithGoogle()"
-						class="border-2 mt-4 text-center font-semibold hover:rounded border-blue-400 px-6 py-2 text-black">Login
-						Dengan Google</button> -->
 				</div>
 			</div>
 			<div class="mt-4 w-full grid grid-cols-1 gap-2" id="comment-list">
@@ -192,10 +189,12 @@
 		// get data from firebase comment
 		firebase.database().ref("comments").on("value", function (snapshot) {
 			let data = snapshot.val();
+			// set the lates to the first array
+			data = Object.values(data).reverse();
 			let html = "";
 			for (let key in data) {
 				html += `
-				<div class="flex flex-col h-fit bg-white rounded-lg p-4">
+				<div class="flex flex-col h-fit bg-white shadow rounded-lg p-4">
 					<div class="flex flex-row items-center">
 						<img class="w-10 h-10 rounded-full mr-2" src="${data[key].user.photoURL}" alt="avatar">
 						<div class="flex flex-col">
