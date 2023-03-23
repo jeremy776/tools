@@ -106,23 +106,6 @@
 		</div>
 	</div>
 
-	<div class="bg-slate-100 py-20">
-		<h1 class="text-center text-4xl font-mono text-gray-900">Berikan Tanggapan</h1>
-		<div class="mt-6 p-6 gap-4">
-			<div class="w-full">
-				<div class="flex flex-col gap-2 w-full">
-					<label class="text-xl text-gray-900">Pesan:</label>
-					<textarea id="comment" class="textarea w-full max-w-xl bg-gray-200 text-gray-800 textarea-bordered" placeholder="Komentar mu"></textarea>
-				</div>
-				<div class="action">
-				</div>
-			</div>
-			<div class="mt-4 w-full grid grid-cols-1 gap-2" id="comment-list">
-				
-			</div>
-		</div>
-	</div>
-
 	<footer class="footer p-10 bg-gray-900 text-neutral-content">
 		<div>
 			<svg width="50" height="50" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd"
@@ -161,102 +144,6 @@
 		counterRef.transaction(function (currentCount) {
 			return (currentCount || 0) + 1;
 		});
-	</script>
-	<script>
-		// create button login and append to id action if user log in
-		firebase.auth().onAuthStateChanged(function (user) {
-			if (user) {
-				let userdta = {
-					name: user.displayName,
-					email: user.email,
-					photoURL: user.photoURL
-				}
-				var expiresDate = new Date();
-				expiresDate.setTime(expiresDate.getTime() + (2 * 24 * 60 * 60 * 1000)); // 2 hari
-				var expires = "expires=" + expiresDate.toGMTString();
-				document.cookie = "user_data=" + JSON.stringify(userdta) + ";" + expires + ";path/"
-				document.querySelector(".action").innerHTML = `
-				<button onclick="postComment()" class="px-6 py-2 text-sm bg-indigo-400 text-white mt-2 rounded hover:shadow-xl transition-all ease">Post comment</button>
-				`
-			} else {
-				document.querySelector(".action").innerHTML = `
-				<button onclick="loginWithGoogle()" class="border-2 mt-4 text-center font-semibold hover:rounded border-blue-400 px-6 py-2 text-black">Login</button>
-				`;
-			}
-		});
-	</script>
-	<script>
-		// get data from firebase comment
-		firebase.database().ref("comments").on("value", function (snapshot) {
-			let data = snapshot.val();
-			// set the lates to the first array
-			data = Object.values(data).reverse();
-			let html = "";
-			for (let key in data) {
-				html += `
-				<div class="flex flex-col h-fit bg-white shadow rounded-lg p-4">
-					<div class="flex flex-row items-center">
-						<img class="w-10 h-10 rounded-full mr-2" src="${data[key].user.photoURL}" alt="avatar">
-						<div class="flex flex-col">
-							<span class="font-bold text-gray-900">${data[key].user.name}</span>
-							<span class="text-sm text-gray-500">${timeConverter(data[key].time)}</span>
-						</div>
-					</div>
-					<div class="mt-4">
-						<p class="text-gray-700">${data[key].comment}</p>
-					</div>
-				</div>
-				`
-			}
-			document.querySelector("#comment-list").innerHTML = html;
-		});
-		// format tanggal waktu dari timestamp
-		function timeConverter(UNIX_timestamp) {
-			var a = new Date(UNIX_timestamp);
-			var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-			var year = a.getFullYear();
-			var month = months[a.getMonth()];
-			var date = a.getDate();
-			var hour = a.getHours();
-			var min = a.getMinutes();
-			var sec = a.getSeconds();
-			var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min;
-			return time;
-		}
-		function postComment() {
-			let comment = document.querySelector("#comment").value;
-			if(!comment) return;
-			let user = JSON.parse(getCookie("user_data"));
-			let data = {
-				comment: comment,
-				user: user,
-				time: Date.now(),
-			}
-			firebase.database().ref("comments").push(data);
-			document.querySelector("#comment").value = "";
-		}
-		function getCookie(name) {
-			var value = "; " + document.cookie;
-			var parts = value.split("; " + name + "=");
-			if (parts.length == 2) return parts.pop().split(";").shift();
-
-		}
-		function loginWithGoogle() {
-			let provider = new firebase.auth.GoogleAuthProvider();
-			firebase.auth().signInWithPopup(provider)
-				.then((result) => {
-					console.log(result);
-					let userdta = {
-						name: result.user.displayName,
-						email: result.user.email,
-						photoURL: result.user.photoURL
-					}
-					var expiresDate = new Date();
-					expiresDate.setTime(expiresDate.getTime() + (2 * 24 * 60 * 60 * 1000)); // 2 hari
-					var expires = "expires=" + expiresDate.toGMTString();
-					document.cookie = "user_data=" + JSON.stringify(userdta) + ";" + expires + ";path/"
-				})
-		}
 	</script>
 	<script>
 		const username = "jeremy776";
