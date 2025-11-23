@@ -1,79 +1,139 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 
 <head>
-    <title>Kalkulator BMI - Tools Anrekus</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator BMI - MyTools</title>
     <meta name="description" content="Kalkulator BMI online gratis. Hitung indeks massa tubuh Anda dan ketahui apakah Anda berada pada kategori berat badan normal atau tidak.">
     <meta name="keywords" content="kalkulator bmi, indeks massa tubuh, hitung bmi, berat badan normal">
     <meta name="author" content="Anrekus">
-
-    <meta property="og:title" content="Kalkulator BMI - Tools Anrekus">
+    <meta property="og:title" content="Kalkulator BMI - MyTools">
     <meta property="og:description" content="Kalkulator BMI online gratis. Hitung indeks massa tubuh Anda dan ketahui apakah Anda berada pada kategori berat badan normal atau tidak.">
     
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.css" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.3/dist/full.css" rel="stylesheet" type="text/css" />
 </head>
 
-<body class="p-6">
-    <h2 class="text-center text-4xl font-semibold text-green-600 p-4">Kalkulator BMI</h2>
-    <div class="flex justify-center">
-
-        <form class="bg-gray-100  max-w-xl w-full p-6 rounded-lg">
-            <div class="flex gap-2 flex-col mb-4">
-                <label class="block text-sm font-medium text-gray-900" for="gender">Jenis Kelamin:</label>
-                <select id="gender"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                    <option value="male">Laki-laki</option>
-                    <option value="female">Perempuan</option>
-                </select>
+<body class="bg-white">
+    <!-- Navbar -->
+    <nav class="navbar bg-indigo-600 text-white sticky top-0 z-50">
+        <div class="flex-none">
+            <div class="dropdown">
+                <label tabindex="0" class="outline-none btn btn-ghost btn-square m-1 text-white hover:bg-indigo-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        class="inline-block w-6 h-6 stroke-current">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                        </path>
+                    </svg>
+                </label>
+                <ul class="dropdown-content menu p-2 bg-white text-gray-800 rounded-box w-52">
+                    <li><a href="/" class="hover:bg-indigo-100">Home</a></li>
+                    <li><a href="/bmi" class="hover:bg-indigo-100">Kalkulator BMI</a></li>
+                </ul>
             </div>
+        </div>
+        <div class="flex-1">
+            <a href="/" class="btn btn-ghost normal-case text-xl font-bold hover:bg-indigo-700">MyTools</a>
+        </div>
+        <div class="flex-none">
+            <a href="https://github.com/jeremy776" target="_blank" class="btn btn-ghost btn-circle hover:bg-indigo-700">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                </svg>
+            </a>
+        </div>
+    </nav>
 
-            <div class="flex gap-2 flex-col mb-4">
-                <label for="height" class="block text-sm font-medium text-gray-900">Tinggi (cm):</label>
-                <input type="number"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    name="height" id="height">
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-12">
+        <div class="text-center mb-12">
+            <span class="text-indigo-600 font-semibold text-xs uppercase tracking-wide">Health Calculator</span>
+            <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 mt-2 mb-4">Kalkulator BMI</h1>
+            <div class="w-24 h-1 bg-indigo-600 mx-auto"></div>
+            <p class="text-sm text-gray-600 mt-4 max-w-2xl mx-auto">Hitung indeks massa tubuh Anda dan ketahui status kesehatan Anda</p>
+        </div>
+
+        <div class="flex justify-center">
+            <div class="bg-gray-50 max-w-xl w-full p-8 rounded-2xl border-2 border-gray-200">
+                <form>
+                    <div class="flex gap-2 flex-col mb-6">
+                        <label class="block text-sm font-medium text-gray-900" for="gender">Jenis Kelamin</label>
+                        <select id="gender"
+                            class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5">
+                            <option value="male">Laki-laki</option>
+                            <option value="female">Perempuan</option>
+                        </select>
+                    </div>
+
+                    <div class="flex gap-2 flex-col mb-6">
+                        <label for="height" class="block text-sm font-medium text-gray-900">Tinggi Badan (cm)</label>
+                        <input type="number"
+                            class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
+                            name="height" id="height" placeholder="Contoh: 170">
+                    </div>
+
+                    <div class="flex gap-2 flex-col mb-6">
+                        <label for="weight" class="block text-sm font-medium text-gray-900">Berat Badan (kg)</label>
+                        <input type="number"
+                            class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
+                            name="weight" id="weight" placeholder="Contoh: 60">
+                    </div>
+
+                    <button onclick="calculateBMI()" type="button"
+                        class="mb-6 w-full text-white bg-indigo-600 hover:bg-indigo-700 font-bold rounded-lg text-sm px-5 py-2.5 transition-all">Hitung BMI</button>
+
+                    <div class="border-t border-gray-300 pt-6">
+                        <div class="flex gap-2 flex-col mb-6">
+                            <label for="result" class="block text-sm font-medium text-gray-900">Nilai BMI</label>
+                            <input type="text"
+                                class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 font-bold"
+                                name="result" id="result" readonly>
+                        </div>
+
+                        <div class="flex gap-2 flex-col mb-4">
+                            <label for="status" class="block text-sm font-medium text-gray-900">Status BMI</label>
+                            <input type="text"
+                                class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 font-bold"
+                                name="status" id="status" readonly>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="mt-8 p-4 bg-indigo-50 rounded-lg">
+                    <h3 class="text-sm font-semibold text-gray-900 mb-2">Kategori BMI:</h3>
+                    <ul class="text-xs text-gray-700 space-y-1">
+                        <li><span class="font-medium">Kurus:</span> BMI < 18.5 (Perempuan) atau < 20.5 (Laki-laki)</li>
+                        <li><span class="font-medium">Normal:</span> BMI 18.5-23.0 (Perempuan) atau 20.5-25.0 (Laki-laki)</li>
+                        <li><span class="font-medium">Gemuk:</span> BMI > 23.0 (Perempuan) atau > 25.0 (Laki-laki)</li>
+                    </ul>
+                </div>
             </div>
-
-            <div class="flex gap-2 flex-col mb-4">
-                <label for="weight" class="block text-sm font-medium text-gray-900">Berat (kg):</label>
-                <input type="number"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    name="weight" id="weight">
-            </div>
-
-            <button onclick="calculateBMI()" type="button"
-                class="mb-6 w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-md px-5 py-2.5 mr-2 mb-2">Hitung</button>
-
-            <div class="flex gap-2 flex-col mb-4">
-                <label for="result" class="block text-sm font-medium text-gray-900">BMI:</label>
-                <input type="text"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    name="result" id="result" readonly>
-            </div>
-
-            <div class="flex gap-2 flex-col mb-4">
-                <label for="status" class="block text-sm font-medium text-gray-900">Status BMI:</label>
-                <input type="text"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    name="status" id="status" readonly>
-            </div>
-        </form>
+        </div>
     </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white mt-20">
+        <div class="container mx-auto px-6 py-8">
+            <div class="text-center">
+                <p class="text-gray-400 text-sm">&copy; 2025 MyTools. Made with ❤ by Anrekus.</p>
+            </div>
+        </div>
+    </footer>
 
     <script>
         function calculateBMI() {
-            // Mendapatkan input dari user
             var gender = document.getElementById("gender").value;
             var height = parseFloat(document.getElementById("height").value);
             var weight = parseFloat(document.getElementById("weight").value);
 
-            // Menghitung BMI
+            if (!height || !weight || height <= 0 || weight <= 0) {
+                alert("Mohon masukkan tinggi dan berat badan yang valid!");
+                return;
+            }
+
             var bmi = weight / ((height / 100) * (height / 100));
 
-            // Mendeteksi status BMI berdasarkan gender
             var status = "";
             if (gender === "male") {
                 if (bmi < 20.5) {
@@ -93,7 +153,6 @@
                 }
             }
 
-            // Menampilkan hasil
             document.getElementById("result").value = bmi.toFixed(2);
             document.getElementById("status").value = status;
         }
